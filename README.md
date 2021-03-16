@@ -1,6 +1,6 @@
 # Coding challenge 
 
-## Cycles database
+## Cycles management
 
 - Clone this project 
 - Write a small Rais app that manages Cycles. For this exercise a Cycle can be represented as the 
