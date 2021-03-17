@@ -13,66 +13,50 @@
     {
       name: "Plastic structure",
       impacts: {
-        climate_change: {
-          production: 30,
-          distribution: 15,
-          use: 2,
-          end_of_life: 3
-        },
-        energy_use: {
-          production: 15,
-          distribution: 2,
-          use: 2,
-          end_of_life: 0 
-        }
+        climate_change: 3,
+        water_use: 200
       }
     },
     {
       name: "Printing engine",
-      impacts: {
-        climate_change: {
-          production: 10,
-          distribution: 5,
-          use: 8,
-          end_of_life: 0 
+      components: [
+        {
+          name: "Electronics",
+          impacts: {
+            climate_change: 25,
+            water_use: 5
+          }
         },
-        energy_use: {
-          production: 15,
-          distribution: 2,
-          use: 25,
-          end_of_life: 0 
+        {
+          name: "Mechanisms",
+          impacts: {
+            climate_change: 10,
+            water_use: 100
+          }
         }
-      }
-    },
+      ]
+    }
     {
-      name: "Ink comsuption",
+      name: "Electricity consumption",
       impacts: {
-        climate_change: {
-          production: 5,
-          distribution: 3,
-          use: 2,
-          end_of_life: 2 
-        },
-        energy_use: {
-          production: 2,
-          distribution: 1 ,
-          use: 1,
-          end_of_life: 1 
-        }
+        climate_change: 160,
+        water_use: 1
       }
     }
   ]
 }
 ```
 
-- A Cycle has many Components. A Component has many Impacts.
-- An Impact is an integer value that belongs to a Category and belongs to a Stage.
-- Categories are climate_change and energy_use.
-- Stages are production, distribution, use and end_of_life.
+- A Cycle has many Components. Some Components may have nested Components (Subcomponents).
+- The Components and Subcomponents are stored in a JSONB column in the database.
+- Components that do not have nested Components have Impacts
+- An Impact provides two integer values, one per Category. Categories are `climate_change` and `water_use`
 - You can add, edit or delete Cycles.
 - You don't need to add, edit or delete Stages and Categories.
 - When editing a Cycle you can add, edit or delete Components.
-- You can configure and model the database, controllers and views any way you want.
+- When editing a Component, you can add, edit or delete other Subcomponents
+- When showing a Cycle, the user should be able to see the total impact (sum of all impacts) for each Category.
+- You can configure and model the database, controllers and views any way you want, as long as components are stored in a JSONB column as indicated.
 - You can use any front-end framework (Simple HTML, React, Vue) on the views. 
 - You can use any style framework (Simple CSS, Bootstrap, Tailwind CSS). Bonus points for Tailwind CSS.
 - There should be a route like /cycles/:id.json that returns the JSON representation of a Cycle
