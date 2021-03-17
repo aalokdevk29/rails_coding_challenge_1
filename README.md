@@ -35,7 +35,7 @@
           }
         }
       ]
-    }
+    },
     {
       name: "Electricity consumption",
       impacts: {
