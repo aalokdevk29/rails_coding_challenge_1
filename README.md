@@ -52,7 +52,7 @@
 - Components that do not have nested Components have Impacts
 - An Impact provides two integer values, one per Category. Categories are `climate_change` and `water_use`
 - You can add, edit or delete Cycles.
-- You don't need to add, edit or delete Stages and Categories.
+- You do **NOT** need to add, edit or delete Categories.
 - When editing a Cycle you can add, edit or delete Components.
 - When editing a Component, you can add, edit or delete other Subcomponents
 - When showing a Cycle, the user should be able to see the total impact (sum of all impacts) for each Category.
