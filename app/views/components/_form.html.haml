@@ -1,0 +1,35 @@
+= nested_form_for component, method: :put, html: {class: 'form' } do |form|
+  - if component.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(component.errors.count, "error")
+        prohibited this component from being saved:
+      %ul
+        - component.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label "component Name"
+    = form.text_field :name, id: :component_name, class: "form-control"
+    %hr
+    = form.fields_for :impect, form.object.impect || form.object.build_impect do |impect_form|
+      .form-group
+        = impect_form.label :climate_change
+        = impect_form.text_field :climate_change, class: "form-control"
+      .form-group
+        = impect_form.label :water_use
+        = impect_form.text_field :water_use, class: "form-control"
+  = form.fields_for :subcomponents do |subcomponent_form|
+    %hr
+    %div.row{ id: subcomponent_form.object_id }
+      .col
+        .form-group
+          = subcomponent_form.label "Subcomponent Name"
+          = subcomponent_form.text_field :name, class: "form-control"
+        .form-group
+          = subcomponent_form.link_to_remove "Remove subcomponent"
+      
+            
+  = form.link_to_add "Add more Subcomponents", :subcomponents
+                 
+  .actions
+    = form.submit

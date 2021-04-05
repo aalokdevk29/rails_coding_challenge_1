@@ -1,0 +1,24 @@
+= nested_form_for cycle, url: {action: action}, method: http_method, html: {class: 'form' } do |form|
+  - if cycle.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(cycle.errors.count, "error")
+        prohibited this cycle from being saved:
+      %ul
+        - cycle.errors.full_messages.each do |message|
+          %li= message
+  .form-group
+    = form.label "Cycle Name"
+    = form.text_field :name, id: :cycle_name, class: "form-control"
+  = form.fields_for :components do |component_form|
+    %hr
+    %div.row{ id: component_form.object_id }
+      .col
+        .form-group
+          = component_form.label "Component Name"
+          = component_form.text_field :name, class: "form-control"
+        .form-group
+          = component_form.link_to_remove "Remove this component"
+  = form.link_to_add "Add more components", :components               
+  .actions
+    = form.submit

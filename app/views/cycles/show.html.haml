@@ -1,0 +1,19 @@
+%table.table
+  %thead
+    %tr
+      %th Cycle
+      %th Components
+      %th Total impects
+      %th Sum of climate change impect
+      %th Sum of water use impect
+      
+  %tbody
+    %tr
+      %td= @cycle.name  
+      %td=@cycle.components.map { |component| link_to component.name,component }.join(', ').html_safe
+      %td= @cycle.toatal_impects
+      %td= @cycle.climate_change_sum
+      %td= @cycle.water_use_sum
+
+= link_to 'Edit', edit_cycle_path(@cycle)
+= link_to 'Back', cycles_path

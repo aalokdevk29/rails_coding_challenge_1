@@ -1,0 +1,22 @@
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th SubComponents
+  %tbody
+    %tr
+      %td=link_to @component.name, @component
+      %td=@component.subcomponents.map { |component| link_to component.name, component }.join(', ').html_safe
+Impect
+%table.table
+  %thead
+    %tr
+      %th Water use
+      %th Climate change
+  %tbody
+    %tr
+      %td=@component.impect&.water_use
+      %td=@component.impect&.climate_change
+
+= link_to 'Edit', edit_component_path(@component)
+= link_to 'Back', components_path
